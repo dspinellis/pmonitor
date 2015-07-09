@@ -1,0 +1,75 @@
+.TH PMONITOR 1 "9 July 2015"
+.\"
+.\" (C) Copyright 2006-2015 Diomidis Spinellis
+.\"
+.\"  Licensed under the Apache License, Version 2.0 (the "License");
+.\"  you may not use this file except in compliance with the License.
+.\"  You may obtain a copy of the License at
+.\"
+.\"      http://www.apache.org/licenses/LICENSE-2.0
+.\"
+.\"  Unless required by applicable law or agreed to in writing, software
+.\"  distributed under the License is distributed on an "AS IS" BASIS,
+.\"  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+.\"  See the License for the specific language governing permissions and
+.\"  limitations under the License.
+.\"
+.SH NAME
+pmonitor \- monitor a job's progress
+.SH SYNOPSIS
+\fBpmonitor\fP
+\fB\-c\fP \fIcommand\fP |
+\fB\-f\fP \fIfile\fP |
+\fB\-p\fP \fIpid\fP
+[\fB-i\fP \fIinterval\fP]
+.SH DESCRIPTION
+The \fIpmonitor\fP command will display the progress of a process
+as a percentage.
+It does this by examining the process's open files,
+and calculating the ratio between
+the position of the file's seek pointer offset and the file length.
+For processes that process files in a sequential fashion,
+such as file compression and database import, this ratio
+can be translated to the percentage of the job that has been completed.
+.PP
+The command may produce no output, if a process does not hold any open
+files with a non-zero seek offset.
+.SH OPTIONS
+.TP
+\fB\-c\fP, \fB\-\-command\fP=\fICOMMAND\fP
+Monitor the progress through the files opened by the specified running command.
+The command can be specified through (part) of its name
+(e.g. \fIgzip\fP), or through a regular expression if the
+argument starts with a \fC/\fP.
+See the documentation of the \fIlsof\fP(1) \fB\-c\fP option regarding
+the rules and flags associated with the use of regular expressions.
+
+.TP
+\fB\-f\fP, \fB\-\-file\fP=\fIFILE\fP
+Monitor a process's progress through its processing of the specified file.
+
+.TP
+\fB\-p\fP, \fB\-\-pid\fP=\fIPID\fP
+Monitor the progress of the process with the specified process id \fIPID\fP.
+
+.TP
+\fB\-i\fP, \fB\-\-interval\fP=\fIINTERVAL\fP
+Repeat the output every \fIINTERVAL\fP seconds.
+
+.TP
+\fB\-h\fP, \fB\-\-help\fP
+Display the program's usage information and exit.
+
+.SH AUTHOR
+Diomidis Spinellis \(em <http://www.spinellis.gr>
+
+.SH "REPORTING BUGS"
+Visit the utility's \fIGitHub\fP page at
+<https://github.com/dspinellis/pmonitor>.
+Fixes and improvements are accepted through pull requests.
+
+.SH "SEE ALSO"
+\fIlsof\fP(1),
+.PP
+The \fIpmonitor\fP command is modelled after a similar facility
+that was available on Permin-Elmer/Concurrent OS32.
