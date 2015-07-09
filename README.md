@@ -16,4 +16,4 @@ your path.
 The _pmonitor_ program requires a working version of _lsof_.
 
 ## Manual page
-You can find the command's manual page [here](pmonitor.html).
+You can find the command's manual page [here](http://htmlpreview.github.io/?https://github.com/dspinellis/pmonitor/blob/master/pmonitor.html).
