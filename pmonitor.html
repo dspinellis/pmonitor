@@ -1,0 +1,143 @@
+<!-- Creator     : groff version 1.22.2 -->
+<!-- CreationDate: Thu Jul  9 16:41:43 2015 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>PMONITOR</title>
+
+</head>
+<body>
+
+<h1 align="center">PMONITOR</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#OPTIONS">OPTIONS</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+<a href="#REPORTING BUGS">REPORTING BUGS</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">pmonitor
+&minus; monitor a job&rsquo;s progress</p>
+
+<h2>SYNOPSIS
+<a name="SYNOPSIS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>pmonitor
+&minus;c</b> <i>command</i> | <b>&minus;f</b> <i>file</i> |
+<b>&minus;p</b> <i>pid</i> [<b>-i</b> <i>interval</i>]</p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">The
+<i>pmonitor</i> command will display the progress of a
+process as a percentage. It does this by examining the
+process&rsquo;s open files, and calculating the ratio
+between the position of the file&rsquo;s seek pointer offset
+and the file length. For processes that process files in a
+sequential fashion, such as file compression and database
+import, this ratio can be translated to the percentage of
+the job that has been completed.</p>
+
+<p style="margin-left:11%; margin-top: 1em">The command may
+produce no output, if a process does not hold any open files
+with a non-zero seek offset.</p>
+
+<h2>OPTIONS
+<a name="OPTIONS"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>&minus;c</b>,
+<b>&minus;&minus;command</b>=<i>COMMAND</i></p>
+
+<p style="margin-left:22%;">Monitor the progress through
+the files opened by the specified running command. The
+command can be specified through (part) of its name (e.g.
+<i>gzip</i>), or through a regular expression if the
+argument starts with a <tt>/</tt>. See the documentation of
+the <i>lsof</i>(1) <b>&minus;c</b> option regarding the
+rules and flags associated with the use of regular
+expressions.</p>
+
+<p style="margin-left:11%;"><b>&minus;f</b>,
+<b>&minus;&minus;file</b>=<i>FILE</i></p>
+
+<p style="margin-left:22%;">Monitor a process&rsquo;s
+progress through its processing of the specified file.</p>
+
+<p style="margin-left:11%;"><b>&minus;p</b>,
+<b>&minus;&minus;pid</b>=<i>PID</i></p>
+
+<p style="margin-left:22%;">Monitor the progress of the
+process with the specified process id <i>PID</i>.</p>
+
+<p style="margin-left:11%;"><b>&minus;i</b>,
+<b>&minus;&minus;interval</b>=<i>INTERVAL</i></p>
+
+<p style="margin-left:22%;">Repeat the output every
+<i>INTERVAL</i> seconds.</p>
+
+<p style="margin-left:11%;"><b>&minus;h</b>,
+<b>&minus;&minus;help</b></p>
+
+<p style="margin-left:22%;">Display the program&rsquo;s
+usage information and exit.</p>
+
+<h2>AUTHOR
+<a name="AUTHOR"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Diomidis
+Spinellis &mdash; &lt;http://www.spinellis.gr&gt;</p>
+
+<h2>REPORTING BUGS
+<a name="REPORTING BUGS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Visit the
+utility&rsquo;s <i>GitHub</i> page at
+&lt;https://github.com/dspinellis/pmonitor&gt;. Fixes and
+improvements are accepted through pull requests.</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><i>lsof</i>(1),</p>
+
+<p style="margin-left:11%; margin-top: 1em">The
+<i>pmonitor</i> command is modelled after a similar facility
+that was available on the Permin-Elmer/Concurrent OS32.</p>
+<hr>
+</body>
+</html>
