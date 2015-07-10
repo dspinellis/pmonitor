@@ -75,7 +75,16 @@ EOF
 # separate word. The quotes around `$@' are essential!
 # We need TEMP as the `eval set --' would nuke the return value of getopt.
 
-TEMP=`getopt -o c:,f:,h,i:,p: --long command:,file:,help,interval:,pid: -n 'pmonitor' -- "$@"`
+# Allowed short options
+SHORTOPT=c:,f:,h,i:,p:
+
+if getopt -l >/dev/null 2>&1 ; then
+  # Simple (e.g. FreeBSD) getopt
+  TEMP=$(getopt $SHORTOPT "$@")
+else
+  # Long options supported
+  TEMP=$(getopt -o $SHORTOPT --long command:,file:,help,interval:,pid: -n 'pmonitor' -- "$@")
+fi
 
 if [ $? != 0 ] ; then
   usage

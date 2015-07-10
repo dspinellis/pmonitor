@@ -40,3 +40,6 @@ clean:
 install: $(EXECUTABLES)
 	install $(EXECUTABLES) $(INSTPREFIX)/bin
 	install -m 644 $(MANSRC) $(INSTPREFIX)/share/man/man1
+
+test:
+	./test-pmonitor.sh
