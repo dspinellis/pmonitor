@@ -17,3 +17,6 @@ The _pmonitor_ program requires a working version of _lsof_.
 
 ## Manual page
 You can find the command's manual page [here](http://htmlpreview.github.io/?https://github.com/dspinellis/pmonitor/blob/master/pmonitor.html).
+
+## See also
+* [pv](http://www.ivarch.com/programs/pv.shtml)
