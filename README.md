@@ -1,7 +1,6 @@
 # pmonitor
 The _pmonitor_ command allows you to monitor a job's progress by specifying
-the name of the corresponding command, its process id, or the
-the file being processed.
+the name of the corresponding command, its process id, or the file being processed.
 
 See the example below.
 ```
