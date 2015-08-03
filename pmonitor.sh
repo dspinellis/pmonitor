@@ -38,7 +38,7 @@ display()
   lsof -o0 -o "$OPT1" "$OPT2" |
       awk '
     BEGIN { CONVFMT = "%.2f" }
-    $4 ~ /^[0-9]+r$/ && $7 ~ /^0t/ {
+    $4 ~ /^[0-9]+[ru]$/ && $7 ~ /^0t/ {
       offset = substr($7, 3)
       fname = $9
       "ls -l '\''" fname "'\'' 2>/dev/null" | getline

@@ -13,7 +13,7 @@ PID=$!
 
 sleep 1
 
-RESULT=$(./pmonitor.sh -p $PID | sed 's/.* \(.*\)\.[0-9][0-9]%/\1/')
+RESULT=$(./pmonitor.sh -p $PID | sed -n '/dict/s/.* \(.*\)\.[0-9][0-9]%/\1/p')
 
 wait
 
