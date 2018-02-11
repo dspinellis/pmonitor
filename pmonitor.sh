@@ -2,7 +2,7 @@
 #
 # Monitor the progress of a specified job
 #
-# Copyright 2006-2015 Diomidis Spinellis
+# Copyright 2006-2018 Diomidis Spinellis
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@
 # Requires:
 # - lsof(8) with offset (-o) printing functionality
 #
-# Tested under FreeBSD 4.11 and FreeBSD 6.0
+# Submit issues and pull requests as https://github.com/dspinellis/pmonitor
 #
 
 # Display the scanned percentage of lsof files.
