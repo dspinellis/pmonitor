@@ -34,7 +34,7 @@
 # The OPT1 and OPT2 variables are passed to lsof as arguments.
 opt_lsof()
 {
-  lsof -o0 -o "$OPT1" "$OPT2"
+  lsof -w -o0 -o "$OPT1" "$OPT2"
 }
 
 # Display the scanned percentage of lsof files.
