@@ -4,32 +4,31 @@ the name of the corresponding command, its process id, or the file being process
 
 See the examples below.
 
-### Progress of a simple gzip operation
+### Progress of uncompressing a file
 ```
 $ pmonitor --command=gzip
 /home/dds/data/mysql-2015-04-01.sql.gz 58.06%
 ```
 
-### Progress of a MySQL index generation query
+### Progress of a MariaDB file import
 ```
-$ sudo pmonitor --pid=12612 >a
-$ sudo pmonitor --pid=12612 >b
-$ diff a b
-39c39
-< /var/lib/mysql/ghtorrent/#sql-3144_30.MYD 33.98%
----
-> /var/lib/mysql/ghtorrent/#sql-3144_30.MYD 34.93%
+$ pmonitor -c mysql -i 10
+/home/dds/data/mysql-2018-01-01/project_commits.csv 96.50%
+/home/dds/data/mysql-2018-01-01/project_commits.csv 97.11% ETA 0:00:47
+/home/dds/data/mysql-2018-01-01/project_commits.csv 97.72% ETA 0:00:37
+/home/dds/data/mysql-2018-01-01/project_commits.csv 98.23% ETA 0:00:30
+```
 
-$ sudo pmonitor --file='/var/lib/mysql/ghtorrent/#sql-3144_30.MYD' --interval=1
-/var/lib/mysql/ghtorrent/#sql-3144_30.MYD 78.36%
-/var/lib/mysql/ghtorrent/#sql-3144_30.MYD 78.63%
-/var/lib/mysql/ghtorrent/#sql-3144_30.MYD 78.90%
-/var/lib/mysql/ghtorrent/#sql-3144_30.MYD 79.21%
-/var/lib/mysql/ghtorrent/#sql-3144_30.MYD 79.49%
-/var/lib/mysql/ghtorrent/#sql-3144_30.MYD 79.77%
-/var/lib/mysql/ghtorrent/#sql-3144_30.MYD 80.04%
-/var/lib/mysql/ghtorrent/#sql-3144_30.MYD 80.31%
-/var/lib/mysql/ghtorrent/#sql-3144_30.MYD 80.58%
+### Progress of a MariaDB index generation
+```
+$ sudo pmonitor -c mysqld -i 10 -f /home/mysql/ghtorrent/project_commits.MYD
+/home/mysql/ghtorrent/project_commits.MYD 7.88%
+/home/mysql/ghtorrent/project_commits.MYD 7.92% ETA 6:32:27
+/home/mysql/ghtorrent/project_commits.MYD 7.96% ETA 6:26:32
+/home/mysql/ghtorrent/project_commits.MYD 8.00% ETA 6:29:27
+/home/mysql/ghtorrent/project_commits.MYD 8.04% ETA 6:24:26
+/home/mysql/ghtorrent/project_commits.MYD 8.08% ETA 6:23:24
+
 ```
 
 ## Installation
