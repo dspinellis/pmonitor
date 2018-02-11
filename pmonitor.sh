@@ -30,21 +30,61 @@
 # Submit issues and pull requests as https://github.com/dspinellis/pmonitor
 #
 
-# Display the scanned percentage of lsof files.
+# Run lsof with the specified options
 # The OPT1 and OPT2 variables are passed to lsof as arguments.
+opt_lsof()
+{
+  lsof -o0 -o "$OPT1" "$OPT2"
+}
+
+# Display the scanned percentage of lsof files.
 display()
 {
   # Obtain the offset and print it as a percentage
-  lsof -o0 -o "$OPT1" "$OPT2" |
-      awk '
-    BEGIN { CONVFMT = "%.2f" }
+  awk '
+    # Return current time
+    function time() {
+	"date +%s" | getline t
+	close("date +%s")
+	return t
+    }
+
+    # Return length of specified file
+    function file_length(fname) {
+      if (!cached_length[fname]) {
+	"ls -l '\''" fname "'\'' 2>/dev/null" | getline
+	cached_length[fname] = $5 + 0
+      }
+      return cached_length[fname]
+    }
+
+    BEGIN {
+      CONVFMT = "%.2f"
+      start = time()
+    }
+
     $4 ~ /^[0-9]+[ru]$/ && $7 ~ /^0t/ {
+      now = time()
       offset = substr($7, 3)
       fname = $9
-      "ls -l '\''" fname "'\'' 2>/dev/null" | getline
-      len = $5
-      if (len + 0 > 0)
-        print fname, offset / len * 100 "%"
+      len = file_length(fname)
+      if (len > 0) {
+	if (!start_offset[fname])
+	  start_offset[fname] = offset
+	delta_t = now - start
+	delta_o = offset - start_offset[fname]
+	if (delta_t > 5 && delta_o > 0) {
+	  bps = delta_o / delta_t
+	  t = (len - offset) / bps
+	  eta_s = t % 60
+	  t = int(t / 60)
+	  eta_m = t % 60
+	  t = int(t / 60)
+	  eta_h = t
+	  eta = sprintf("ETA %d:%02d:%02d", eta_h, eta_m, eta_s)
+	}
+        print fname, offset / len * 100 "%", eta
+      }
     }
   '
 }
@@ -139,9 +179,10 @@ fi
 
 if [ "$INTERVAL" ] ; then
   while : ; do
-    display
+    opt_lsof
     sleep $INTERVAL
   done
 else
-  display
-fi
+  opt_lsof
+fi |
+display
