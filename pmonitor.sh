@@ -73,7 +73,7 @@ display()
 	  start_offset[fname] = offset
 	delta_t = now - start
 	delta_o = offset - start_offset[fname]
-	if (delta_t > 5 && delta_o > 0) {
+	if (delta_t > 2 && delta_o > 0) {
 	  bps = delta_o / delta_t
 	  t = (len - offset) / bps
 	  eta_s = t % 60
