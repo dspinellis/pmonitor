@@ -1,6 +1,6 @@
-.TH PMONITOR 1 "9 July 2015"
+.TH PMONITOR 1 "13 February 2018"
 .\"
-.\" (C) Copyright 2006-2015 Diomidis Spinellis
+.\" (C) Copyright 2006-2018 Diomidis Spinellis
 .\"
 .\"  Licensed under the Apache License, Version 2.0 (the "License");
 .\"  you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ pmonitor \- monitor a job's progress
 \fB\-f\fP \fIfile\fP |
 \fB\-p\fP \fIpid\fP
 [\fB-i\fP \fIinterval\fP]
+[\fB-u\fP]
 .SH DESCRIPTION
 The \fIpmonitor\fP command will display the progress of a process
 as a percentage.
@@ -59,6 +60,12 @@ Repeat the output every \fIINTERVAL\fP seconds.
 .TP
 \fB\-h\fP, \fB\-\-help\fP
 Display the program's usage information and exit.
+
+.TP
+\fB\-u\fP, \fB\-\-update\fP
+Also monitor files that are opened in update (read and write) mode,
+rather than only those that are opened in read-only mode.
+This is useful for monitoring table scans of RDBMS engines.
 
 .SH AUTHOR
 Diomidis Spinellis \(em <http://www.spinellis.gr>

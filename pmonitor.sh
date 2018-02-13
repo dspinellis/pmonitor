@@ -63,7 +63,7 @@ display()
       start = time()
     }
 
-    $4 ~ /^[0-9]+[ru]$/ && $7 ~ /^0t/ {
+    $4 ~ /^[0-9]+[r'$UPDATE']$/ && $7 ~ /^0t/ {
       now = time()
       offset = substr($7, 3)
       fname = $9
@@ -103,6 +103,8 @@ pmonitor [-c command] [-f file] [-i interval] [-p pid]
 -i, --interval=INTERVAL	Continuously display the progress every INTERVAL seconds
 -p, --pid=PID		Monitor the progress of the process with the specified
 			process id
+-u, --update		Also monitor files opened in update (rather than read
+			mode)
 
 Exactly one of the c, f, p options must be specified.
 
@@ -116,14 +118,14 @@ EOF
 # We need TEMP as the `eval set --' would nuke the return value of getopt.
 
 # Allowed short options
-SHORTOPT=c:,f:,h,i:,p:
+SHORTOPT=c:,f:,h,i:,p:,u
 
 if getopt -l >/dev/null 2>&1 ; then
   # Simple (e.g. FreeBSD) getopt
   TEMP=$(getopt $SHORTOPT "$@")
 else
   # Long options supported
-  TEMP=$(getopt -o $SHORTOPT --long command:,file:,help,interval:,pid: -n 'pmonitor' -- "$@")
+  TEMP=$(getopt -o $SHORTOPT --long command:,file:,help,interval:,pid:,update -n 'pmonitor' -- "$@")
 fi
 
 if [ $? != 0 ] ; then
@@ -158,6 +160,10 @@ while : ; do
       OPT1=-p
       OPT2="$2"
       shift 2
+      ;;
+    -u|--update)
+      UPDATE=u
+      shift
       ;;
     --)
       shift
