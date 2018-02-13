@@ -19,7 +19,7 @@ $ pmonitor -c mysql -i 10
 /home/dds/data/mysql-2018-01-01/project_commits.csv 98.23% ETA 0:00:30
 ```
 
-### Progress of a MariaDB index generation
+### Progress of a MariaDB primary key index generation
 ```
 $ sudo pmonitor -c mysqld -i 10 -f /home/mysql/ghtorrent/project_commits.MYD
 /home/mysql/ghtorrent/project_commits.MYD 7.88%
@@ -29,6 +29,12 @@ $ sudo pmonitor -c mysqld -i 10 -f /home/mysql/ghtorrent/project_commits.MYD
 /home/mysql/ghtorrent/project_commits.MYD 8.04% ETA 6:24:26
 /home/mysql/ghtorrent/project_commits.MYD 8.08% ETA 6:23:24
 
+```
+### Progress of a MariaDB index generation
+```
+$ sudo pmonitor -c mysqld -i 10 -f /home/mysql/ghtorrent/\#sql-62f0_14.MYD
+/home/mysql/ghtorrent/#sql-62f0_14.MYD 9.44%
+/home/mysql/ghtorrent/#sql-62f0_14.MYD 9.44% ETA 552:52:34
 ```
 
 ## Installation
