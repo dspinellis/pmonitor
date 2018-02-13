@@ -10,6 +10,20 @@ $ pmonitor --command=gzip
 /home/dds/data/mysql-2015-04-01.sql.gz 58.06%
 ```
 
+### Progress of resolving IP addresses in a web server log file
+```
+$ pmonitor -c logresolve -i 20
+/var/log/apache2/www.balab.aueb.gr_access_ssl.log.1 4.02%
+/var/log/apache2/www.balab.aueb.gr_access_ssl.log.1 12.05% ETA 0:03:38
+/var/log/apache2/www.balab.aueb.gr_access_ssl.log.1 16.06% ETA 0:04:38
+/var/log/apache2/www.balab.aueb.gr_access_ssl.log.1 20.08% ETA 0:04:58
+/var/log/apache2/www.balab.aueb.gr_access_ssl.log.1 24.10% ETA 0:05:02
+/var/log/apache2/www.balab.aueb.gr_access_ssl.log.1 28.11% ETA 0:04:58
+/var/log/apache2/www.balab.aueb.gr_access_ssl.log.1 36.14% ETA 0:03:58
+/var/log/apache2/www.balab.aueb.gr_access_ssl.log.1 44.18% ETA 0:03:14
+/var/log/apache2/www.balab.aueb.gr_access_ssl.log.1 52.21% ETA 0:02:38
+```
+
 ### Progress of a MariaDB file import
 ```
 $ pmonitor -u -c mysql
