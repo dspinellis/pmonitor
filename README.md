@@ -59,3 +59,4 @@ You can find the command's manual page [here](http://htmlpreview.github.io/?http
 
 ## See also
 * [pv](http://www.ivarch.com/programs/pv.shtml)
+* [progress](https://github.com/Xfennec/progress)
