@@ -52,8 +52,13 @@ display()
     # Return length of specified file
     function file_length(fname) {
       if (!cached_length[fname]) {
-	"ls -l '\''" fname "'\'' 2>/dev/null" | getline
-	cached_length[fname] = $5 + 0
+        if (fname ~ /^\/dev\/[^/]*$/ && system("test -b " fname) == 0) {
+          getline < ("/sys/block/" substr(fname, 6) "/size")
+          cached_length[fname] = $1 * 512 # sector size is always 512 bytes
+        } else {
+          "ls -l '\''" fname "'\'' 2>/dev/null" | getline
+          cached_length[fname] = $5 + 0
+        }
       }
       return cached_length[fname]
     }
