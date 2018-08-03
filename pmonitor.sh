@@ -86,9 +86,9 @@ display()
 	  eta_m = t % 60
 	  t = int(t / 60)
 	  eta_h = t
-	  eta = sprintf("ETA %d:%02d:%02d", eta_h, eta_m, eta_s)
+	  eta = sprintf(" ETA %d:%02d:%02d", eta_h, eta_m, eta_s)
 	}
-        print fname, offset / len * 100 "%", eta
+        print fname, offset / len * 100 "%" eta
       }
     }
   '
