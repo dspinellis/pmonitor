@@ -88,7 +88,10 @@ display()
 	  eta_h = t
 	  eta = sprintf(" ETA %d:%02d:%02d", eta_h, eta_m, eta_s)
 	}
-        print fname, offset / len * 100 "%" eta
+        out = fname "\t" offset / len * 100 "%" eta
+	if (!'$ONLYDIFF' || !seen[out])
+	  print out
+	seen[out] = 1
       }
     }
   '
@@ -100,8 +103,9 @@ usage()
 	cat <<\EOF 1>&2
 Usage:
 
-pmonitor [-c command] [-f file] [-i interval] [-p pid]
+pmonitor [-c command] [-d] [-f file] [-i interval] [-p pid]
 -c, --command=COMMAND	Monitor the progress of the specified running command
+-d, --diff		During continuous display show only records that differ
 -f, --file=FILE		Monitor the progress of commands processing the
 			specified file
 -h, --help		Display this message and exit
@@ -123,14 +127,14 @@ EOF
 # We need TEMP as the `eval set --' would nuke the return value of getopt.
 
 # Allowed short options
-SHORTOPT=c:,f:,h,i:,p:,u
+SHORTOPT=c:,d,f:,h,i:,p:,u
 
 if getopt -l >/dev/null 2>&1 ; then
   # Simple (e.g. FreeBSD) getopt
   TEMP=$(getopt $SHORTOPT "$@")
 else
   # Long options supported
-  TEMP=$(getopt -o $SHORTOPT --long command:,file:,help,interval:,pid:,update -n 'pmonitor' -- "$@")
+  TEMP=$(getopt -o $SHORTOPT --long command:,diff,file:,help,interval:,pid:,update -n 'pmonitor' -- "$@")
 fi
 
 if [ $? != 0 ] ; then
@@ -141,6 +145,8 @@ fi
 # Note the quotes around `$TEMP': they are essential!
 eval set -- "$TEMP"
 
+ONLYDIFF=0
+
 while : ; do
   case "$1" in
     -c|--command)
@@ -148,6 +154,10 @@ while : ; do
       OPT1=-c
       OPT2="$2"
       shift 2
+      ;;
+    -d|--diff)
+      ONLYDIFF=1
+      shift
       ;;
     -f|--file)
       test -z "$OPT1" || usage
@@ -197,6 +207,7 @@ if [ "$INTERVAL" ] ; then
     sleep $INTERVAL
   done
 else
+  ONLYDIFF=0
   opt_lsof
 fi |
 display

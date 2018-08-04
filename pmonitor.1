@@ -22,6 +22,7 @@ pmonitor \- monitor a job's progress
 \fB\-f\fP \fIfile\fP |
 \fB\-p\fP \fIpid\fP
 [\fB-i\fP \fIinterval\fP]
+[\fB-d\fP]
 [\fB-u\fP]
 .SH DESCRIPTION
 The \fIpmonitor\fP command will display the progress of a process
@@ -44,6 +45,11 @@ The command can be specified through (part) of its name
 argument starts with a \fC/\fP.
 See the documentation of the \fIlsof\fP(1) \fB\-c\fP option regarding
 the rules and flags associated with the use of regular expressions.
+
+.TP
+\fB\-d\fP, \fB\-\-diff\fP
+In repeated output mode,
+output only records that differ from one iteration to the next.
 
 .TP
 \fB\-f\fP, \fB\-\-file\fP=\fIFILE\fP
