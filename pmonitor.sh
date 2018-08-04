@@ -144,11 +144,13 @@ eval set -- "$TEMP"
 while : ; do
   case "$1" in
     -c|--command)
+      test -z "$OPT1" || usage
       OPT1=-c
       OPT2="$2"
       shift 2
       ;;
     -f|--file)
+      test -z "$OPT1" || usage
       OPT1=--
       OPT2="$2"
       shift 2
@@ -162,6 +164,7 @@ while : ; do
       exit 0
       ;;
     -p|--pid)
+      test -z "$OPT1" || usage
       OPT1=-p
       OPT2="$2"
       shift 2
