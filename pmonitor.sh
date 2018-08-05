@@ -164,6 +164,10 @@ while : ; do
       ;;
     -f|--file)
       test -z "$OPT1" || usage
+      if ! [ -r "$2" ] ; then
+	echo "Unable to read $2" 1>&2
+	exit 1
+      fi
       OPT1=--
       OPT2="$2"
       shift 2
