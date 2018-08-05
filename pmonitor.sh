@@ -81,12 +81,15 @@ display()
 	if (delta_t > 2 && delta_o > 0) {
 	  bps = delta_o / delta_t
 	  t = (len - offset) / bps
-	  eta_s = t % 60
-	  t = int(t / 60)
-	  eta_m = t % 60
-	  t = int(t / 60)
-	  eta_h = t
-	  eta = sprintf(" ETA %d:%02d:%02d", eta_h, eta_m, eta_s)
+	  eta = ""
+	  if (t > 0) {
+	    eta_s = t % 60
+	    t = int(t / 60)
+	    eta_m = t % 60
+	    t = int(t / 60)
+	    eta_h = t
+	    eta = sprintf(" ETA %d:%02d:%02d", eta_h, eta_m, eta_s)
+	  }
 	}
         out = fname "\t" offset / len * 100 "%"
 	if (!'$ONLYDIFF' || !seen[out])
