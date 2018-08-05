@@ -88,9 +88,9 @@ display()
 	  eta_h = t
 	  eta = sprintf(" ETA %d:%02d:%02d", eta_h, eta_m, eta_s)
 	}
-        out = fname "\t" offset / len * 100 "%" eta
+        out = fname "\t" offset / len * 100 "%"
 	if (!'$ONLYDIFF' || !seen[out])
-	  print out
+	  print out eta
 	seen[out] = 1
       }
     }
