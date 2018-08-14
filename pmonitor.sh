@@ -56,7 +56,9 @@ display()
           getline < ("/sys/block/" substr(fname, 6) "/size")
           cached_length[fname] = $1 * 512 # sector size is always 512 bytes
         } else {
-          "ls -l '\''" fname "'\'' 2>/dev/null" | getline
+          lscmd = "ls -l '\''" fname "'\'' 2>/dev/null"
+          lscmd | getline
+          close(lscmd)
           cached_length[fname] = $5 + 0
         }
       }
