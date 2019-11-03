@@ -171,6 +171,7 @@ while : ; do
       OPT1=--
       OPT2="$2"
       shift 2
+      UPDATE=u
       ;;
     -i|--interval)
       INTERVAL="$2"
